@@ -86,7 +86,12 @@ export type TicketThroughputData = UserData & {
   totalOpenIssues: number;
   countOfDaysUnderThreshold: number;
   totalCompleteIssues: number;
+  averageIssues: number;
+  averageOpenIssues: number;
+  averageCompleteIssues: number;
   jiraLink: string;
+  jiraCompleteLink: string;
+  jiraOpenLink: string;
 };
 
 @Injectable()
@@ -746,6 +751,14 @@ export class JiraService {
         else if (averageCompleteIssues >= target.low) scale = 1;
       }
       let jql = `project = ${projectKey} and createdDate >= "${params.startDate}" and createdDate <= "${params.endDate}" and assignee = "${accountId}"`;
+      const jqlComplete = `project = ${projectKey} and createdDate >= "${params.startDate}" and createdDate <= "${params.endDate}" and assignee = "${accountId}" and resolution = Done`;
+      const jqlOpen = `project = ${projectKey} and createdDate >= "${
+        params.startDate
+      }" and createdDate <= "${
+        params.endDate
+      }" and assignee = "${accountId}" and status in ("${START_STATUS_OF_EACH_WORKFLOW.join(
+        '", "',
+      )}")`;
 
       if (params.requestTypeName) {
         jql += ` and "Request Type" in ('${params.requestTypeName.join(
@@ -756,10 +769,15 @@ export class JiraService {
         accountId: accountId,
         displayName: expectedData[item].displayName,
         scale,
-        totalIssues: averageIssues,
-        totalOpenIssues: averageOpenIssues,
-        totalCompleteIssues: averageCompleteIssues,
+        totalIssues: expectedData[item].totalIssues,
+        totalOpenIssues: expectedData[item].totalOpenIssues,
+        totalCompleteIssues: expectedData[item].totalCompleteIssue,
+        averageIssues: averageIssues,
+        averageOpenIssues: averageOpenIssues,
+        averageCompleteIssues: averageCompleteIssues,
         jiraLink: this.buildJiraLink(jql),
+        jiraCompleteLink: this.buildJiraLink(jqlComplete),
+        jiraOpenLink: this.buildJiraLink(jqlOpen),
         countOfDaysUnderThreshold: countOfDaysUnderThreshold,
       });
     });
