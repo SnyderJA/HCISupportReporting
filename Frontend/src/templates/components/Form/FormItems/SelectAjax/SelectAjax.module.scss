@@ -1,0 +1,29 @@
+@import '@/templates/styles/_variables.scss';
+
+.selectAjax {
+  border-radius: $border-radius-input;
+  line-height: 18px;
+  width: 100%;
+  :global(.ant-select-selector) {
+    border-radius: $border-radius-input !important;
+    height: 38px !important;
+  }
+  :global(.ant-select-selection-item) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dropdownOptions {
+  :global(.ant-select-item-option-selected:not(.ant-select-item-option-disabled)) {
+    color: #545454;
+    font-weight: 600;
+    background-color: #e6faff;
+    :global(.ant-select-item-option-content) {
+      flex: auto;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

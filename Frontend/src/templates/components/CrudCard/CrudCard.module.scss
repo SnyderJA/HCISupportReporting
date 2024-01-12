@@ -1,0 +1,27 @@
+.crudCard {
+}
+
+.colAction {
+  :global(.ant-btn) {
+    height: 26px;
+    padding: 4px 8px;
+    margin-right: 3px;
+    font-size: 12px;
+  }
+}
+.formSearch {
+  margin-bottom: 10px;
+}
+
+.row-dragging {
+  background: #fafafa;
+  border: 1px solid #ccc;
+}
+
+.row-dragging td {
+  padding: 16px;
+}
+
+.row-dragging .drag-visible {
+  visibility: visible;
+}

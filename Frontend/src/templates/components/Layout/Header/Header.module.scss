@@ -1,0 +1,41 @@
+.headerContentContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  .iconContainer {
+    margin-left: 16px;
+    .icon {
+      vertical-align: middle;
+      > svg {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+}
+
+.dropdownLanguage {
+  background-color: wheat;
+  :global(.ant-dropdown-menu-item) {
+    :global(.ant-dropdown-menu-title-content) {
+      display: flex;
+      align-items: center;
+      > span:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .headerContentContainer {
+    .iconContainer {
+      display: none;
+    }
+    .iconContainer:last-child {
+      display: list-item;
+    }
+  }
+}

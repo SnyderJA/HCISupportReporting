@@ -1,0 +1,186 @@
+@import '@/templates/styles/_variables.scss';
+
+@font-face {
+  font-family: 'NoirPro-Regular';
+  src: url('/fonts/NoirPro/NoirPro-Regular.ttf');
+  font-display: swap;
+  font-weight: bold;
+}
+
+.themLayoutContainer {
+  font-family: 'NoirPro-Regular';
+  :global(.ant-layout-header) {
+    height: $height-header !important;
+    :global(.ant-pro-global-header) {
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      > div:last-child {
+        display: none;
+      }
+    }
+  }
+  :global(.ant-layout-sider) {
+    background-color: $color-background-dark;
+    :global(.ant-pro-sider-links) {
+      :global(.ant-menu-item.ant-pro-sider-collapsed-button) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: center;
+        :global(.ant-menu-title-content) {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  :global(.ant-layout-sider-collapsed) {
+    display: none !important;
+    width: 80px !important;
+    max-width: 80px !important;
+    :global(.ant-menu-vertical .ant-menu-item),
+    :global(.ant-menu-vertical .ant-menu-submenu-title) {
+      padding: 0 calc((80px - 20px) / 2) !important;
+    }
+    :global(.ant-pro-sider-logo) {
+      padding: 20px !important;
+      justify-content: center;
+    }
+    :global(.ant-menu-inline-collapsed) {
+      width: 100% !important;
+    }
+    :global(.ant-pro-sider-links) {
+      :global(.ant-menu .ant-menu-item .anticon) {
+        margin-right: 0 !important;
+      }
+    }
+  }
+
+  :global(.ant-pro-sider-logo) {
+    height: $height-header;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px 20px 20px 34px !important;
+  }
+
+  :global(.ant-layout-sider) {
+    :global(.ant-menu-inline) {
+      :global(.ant-menu-item),
+      :global(.ant-menu-submenu-title) {
+        padding-left: 40px !important;
+      }
+      :global(.ant-menu-sub) {
+        :global(.ant-menu-item) {
+          padding-left: 80px !important;
+        }
+      }
+    }
+    :global(.ant-menu) {
+      :global(.ant-menu-item) {
+        :global(.anticon) {
+          font-size: 20px;
+        }
+      }
+      :global(.ant-menu-submenu) {
+        :global(.ant-menu-submenu-title) {
+          :global(.anticon) {
+            font-size: 20px;
+          }
+        }
+      }
+      :global(.ant-menu-submenu-inline) {
+        :global(.ant-menu-submenu-title) {
+          :global(.ant-menu-submenu-arrow) {
+            left: 22px;
+            right: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.antMenuWrapper:global(.ant-menu) {
+  :global(.ant-menu-item) {
+    :global(.ant-menu-title-content) {
+      :global(.ant-btn) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      :global(.ant-pro-menu-item) {
+        display: flex;
+        :global(.ant-pro-menu-item-title) {
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
+
+.antMenuWrapper:global(.ant-menu-dark) {
+  color: #038fdd;
+  background: #003366;
+  :global(.ant-menu-item-group-title) {
+    color: #038fdd;
+  }
+  :global(.ant-menu-item) {
+    color: #038fdd;
+    :global(.ant-pro-menu-item) {
+      color: #038fdd;
+      display: flex;
+    }
+  }
+  :global(.ant-menu-item-selected) {
+    background-color: transparent !important;
+    :global(.ant-pro-menu-item) {
+      > span {
+        color: $color-text-dark-highlight;
+      }
+    }
+  }
+  :global(.ant-menu-item-active),
+  :global(.ant-menu-submenu-active) {
+    color: $color-text-dark-highlight;
+    :global(.ant-pro-menu-item) {
+      color: $color-text-dark-highlight;
+    }
+  }
+  :global(.ant-menu-submenu-title:hover) {
+    color: $color-text-dark-highlight;
+  }
+  :global(.ant-menu-inline.ant-menu-sub) {
+    background: none;
+    box-shadow: none;
+  }
+  :global(.ant-menu-submenu-inline) {
+    :global(.ant-menu-submenu-title) {
+      :global(.ant-menu-submenu-arrow::before) {
+        background-color: #038fdd;
+      }
+      :global(.ant-menu-submenu-arrow::after) {
+        background-color: #038fdd;
+      }
+    }
+  }
+  :global(.ant-menu-submenu-open) {
+    :global(.ant-menu-submenu-title) {
+      :global(.ant-menu-submenu-arrow::before) {
+        background-color: #ffffff;
+      }
+      :global(.ant-menu-submenu-arrow::after) {
+        background-color: #ffffff;
+      }
+    }
+  }
+  :global(.ant-menu-submenu-active) {
+    :global(.ant-menu-submenu-title) {
+      :global(.ant-menu-submenu-arrow::before) {
+        background-color: $color-text-dark-highlight;
+      }
+      :global(.ant-menu-submenu-arrow::after) {
+        background-color: $color-text-dark-highlight;
+      }
+    }
+  }
+}

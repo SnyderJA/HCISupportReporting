@@ -1,0 +1,79 @@
+@import './AntdStyles/antd.scss';
+
+@font-face {
+  font-family: 'NoirPro-Regular';
+  src: url('/fonts/NoirPro/NoirPro-Regular.ttf');
+  font-display: swap;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'NoirPro-Regular' !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ant-menu-submenu-popup.ant-menu-dark {
+  .ant-menu-sub {
+    color: #038fdd !important;
+    background: #003366 !important;
+    border-radius: 0;
+    .ant-menu-item {
+      color: #038fdd;
+    }
+    .ant-menu-item-selected {
+      background-color: transparent !important;
+    }
+    .ant-menu-item-active,
+    .ant-menu-item:hover,
+    .ant-menu-item-selected {
+      color: #fa8c15;
+    }
+  }
+  .ant-menu-vertical.ant-menu-sub {
+    max-width: 160px;
+  }
+}
+
+.ant-menu-submenu-popup .ant-menu-sub.ant-menu .ant-menu-item {
+  padding-left: 20px !important;
+  padding-right: 30px !important;
+}
+
+.ant-menu-inline-collapsed-tooltip .anticon {
+  display: none;
+}
+
+.ant-menu-inline-collapsed-tooltip .ant-pro-menu-item {
+  color: #ffffff;
+}
+
+.ant-table.ant-table-bordered > .ant-table-container {
+  border: 1px solid #e8e8e8;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table {
+  border-top: 0 !important;
+}
+
+.bzn-centered-component {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.in-layout {
+    min-height: calc(100vh - 72px - 32px - 12px);
+  }
+}

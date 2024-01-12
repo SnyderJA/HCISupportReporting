@@ -1,0 +1,9 @@
+@import '@/templates/styles/_variables.scss';
+
+.textArea {
+  border-radius: $border-radius-input;
+  line-height: 18px;
+  textarea {
+    padding: 8px 11px;
+  }
+}

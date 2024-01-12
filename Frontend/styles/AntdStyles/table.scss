@@ -1,0 +1,15 @@
+.ant-table.ant-table-bordered > .ant-table-container {
+  border: 1px solid #e8e8e8;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table {
+  border-top: 0 !important;
+}
+
+.ant-table {
+  .ant-table-thead > tr > th {
+    color: #616161;
+  }
+}

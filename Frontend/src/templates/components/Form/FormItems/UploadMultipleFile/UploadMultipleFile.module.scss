@@ -1,0 +1,12 @@
+@import '@/templates/styles/_variables.scss';
+
+.uploadMultipleFile {
+  border-radius: $border-radius-input;
+  line-height: 18.2px;
+  .selectFileButton {
+    min-width: 107px;
+    span {
+      line-height: 26px;
+    }
+  }
+}

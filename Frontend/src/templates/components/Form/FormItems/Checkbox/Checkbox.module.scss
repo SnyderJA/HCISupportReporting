@@ -1,0 +1,11 @@
+@import '@/templates/styles/_variables.scss';
+
+.checkbox {
+  :global(.ant-checkbox-inner) {
+    border-radius: $border-radius-input;
+  }
+
+  :global(.ant-checkbox-wrapper-checked:hover .ant-checkbox-checked::after) {
+    border-color: transparent !important;
+  }
+}

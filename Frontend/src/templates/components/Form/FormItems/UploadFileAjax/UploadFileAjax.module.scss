@@ -1,0 +1,64 @@
+@import '@/templates/styles/_variables.scss';
+
+
+
+
+.uploadMultipleFile {
+  :global(.ant-upload-select-text) {
+    width: 100%;
+    
+    
+  }
+  .selectFileButton {
+    min-width: 107px;
+    text-align: left;
+    border-radius: $border-radius-input;
+    margin-bottom: 5px;
+    span {
+      color: #c2c2c2;
+      line-height: 26px;
+    }
+  }
+}
+
+.fileNameContainer {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #d9d9d9 !important;
+}
+.fileItem {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  &:hover {
+    background: #f5f5f5;
+  }
+  .fileName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: 'pointer';
+    padding: 5px 0 5px 11px;
+    height: 36px;
+    line-height: 26px;
+  }
+  .fileItemDelete {
+    margin-left: auto;
+    button {
+      border: 0;
+      width: 25px;
+      /* padding: 5px; */
+      
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 5px;
+      background: #fff;
+      color: #616161bf;
+      &:hover{
+        color: #ff5722;
+        // color: #fff;
+      }
+    }
+  } 
+}

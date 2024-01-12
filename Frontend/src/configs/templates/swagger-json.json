@@ -1,0 +1,1425 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/swiftSpar/v3": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/swiftSpar/v3/subscriptions/create": {
+      "post": {
+        "operationId": "SubscriptionController_createSubscription",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateSubscriptionReqDto" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/SubscriptionDto" } }
+            }
+          }
+        },
+        "tags": ["Subscriptions"]
+      }
+    },
+    "/swiftSpar/v3/subscriptions/isValid": {
+      "post": {
+        "operationId": "SubscriptionController_isValidSubscription",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IsValidSubscriptionReqDto" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          }
+        },
+        "tags": ["Subscriptions"]
+      }
+    },
+    "/swiftSpar/v3/subscriptions/getSubscriptionsValid": {
+      "get": {
+        "operationId": "SubscriptionController_getSubscriptionsValid",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["Subscriptions"]
+      }
+    },
+    "/swiftSpar/v3/users/filterCuriosity": {
+      "get": {
+        "operationId": "UserController_createSubscription",
+        "parameters": [
+          { "name": "lat", "required": true, "in": "query", "schema": { "type": "string" } },
+          { "name": "long", "required": true, "in": "query", "schema": { "type": "string" } },
+          { "name": "distance", "required": true, "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "preferenceIds",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "array", "items": { "type": "number" } }
+          },
+          { "name": "search", "required": true, "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "required": true, "in": "query", "schema": { "type": "number" } },
+          { "name": "offset", "required": true, "in": "query", "schema": { "type": "number" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/UserDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Users"]
+      }
+    },
+    "/swiftSpar/v3/users/delete": {
+      "delete": {
+        "operationId": "UserController_deleteUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/DeleteUserReqDto" } }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          },
+          "default": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          }
+        },
+        "tags": ["Users"]
+      }
+    },
+    "/swiftSpar/v3/linkup-interested/getRequestReceived": {
+      "get": {
+        "operationId": "LinkupInterestedController_getRequestReceived",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/LinkupInterestedDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Linkup Interested"]
+      }
+    },
+    "/swiftSpar/v3/linkup-interested/removeRequestSent": {
+      "delete": {
+        "operationId": "LinkupInterestedController_removeRequestSent",
+        "parameters": [],
+        "responses": { "200": { "description": "" } },
+        "tags": ["Linkup Interested"]
+      }
+    },
+    "/swiftSpar/v3/linkup-interested/removeRequestReceived": {
+      "delete": {
+        "operationId": "LinkupInterestedController_removeRequestReceived",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/Boolean" } } }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Linkup Interested"]
+      }
+    },
+    "/swiftSpar/v3/images/thumbnail": {
+      "get": {
+        "operationId": "ImageController_getThumbnail",
+        "parameters": [
+          { "name": "src", "required": true, "in": "query", "schema": { "type": "string" } },
+          { "name": "w", "required": true, "in": "query", "schema": { "type": "number" } },
+          { "name": "h", "required": true, "in": "query", "schema": { "type": "number" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/swiftSpar/v3/boost-action/create": {
+      "post": {
+        "operationId": "BoostActionController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateBoostActionDto" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/BoostActionDto" } }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/search": {
+      "get": {
+        "operationId": "BoostActionController_search",
+        "parameters": [
+          { "name": "startDate", "required": false, "in": "query", "schema": { "type": "string" } },
+          { "name": "endDate", "required": false, "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "types",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["PROFILE", "COMMUNITY", "ACTIVITY"] }
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/BoostActionDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/update": {
+      "put": {
+        "operationId": "BoostActionController_update",
+        "parameters": [
+          { "name": "id", "required": true, "in": "query", "schema": { "type": "number" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateBoostActionDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/BoostActionDto" } }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/getProfileRecommended": {
+      "get": {
+        "operationId": "BoostActionController_getProfileRecommended",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/BoostActionDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/getCommunityRecommended": {
+      "get": {
+        "operationId": "BoostActionController_getCommunityRecommended",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/BoostActionDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/getActivityRecommended": {
+      "get": {
+        "operationId": "BoostActionController_getActivityRecommended",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/BoostActionDto" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/trackingClick": {
+      "post": {
+        "operationId": "BoostActionController_trackingClick",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TrackingClickRequestDto" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "" } },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/report": {
+      "get": {
+        "operationId": "BoostActionController_getReport",
+        "parameters": [
+          {
+            "name": "boostActionId",
+            "required": true,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          { "name": "startDate", "required": false, "in": "query", "schema": { "type": "string" } },
+          { "name": "endDate", "required": false, "in": "query", "schema": { "type": "string" } },
+          { "name": "profileId", "required": false, "in": "query", "schema": { "type": "number" } },
+          {
+            "name": "activityId",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          },
+          {
+            "name": "communityId",
+            "required": false,
+            "in": "query",
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": { "$ref": "#/components/schemas/BoostActionReportResponseDto" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/getActiveBoostAction": {
+      "get": {
+        "operationId": "BoostActionController_getBoostActionByType",
+        "parameters": [
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "schema": { "enum": ["PROFILE", "COMMUNITY", "ACTIVITY"], "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/BoostActionDto" }
+                        },
+                        "totalElements": { "type": "number" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/boost-action/getBoostAgain": {
+      "get": {
+        "operationId": "BoostActionController_getBoostAgain",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": { "content": { "$ref": "#/components/schemas/BoostActionDto" } }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Boost Action"]
+      }
+    },
+    "/swiftSpar/v3/settings/questions": {
+      "get": {
+        "operationId": "SettingController_getQuestions",
+        "parameters": [
+          {
+            "name": "codes",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "WHY_ARE_YOU_DELETING_YOUR_ACCOUNT",
+                  "WOULD_YOU_CONSIDER_USING_WIZAPP_AGAIN_IN_THE_FEATURE",
+                  "WOULD_YOU_RECOMMEND_WIZAPP_TO_A_FRIEND_OR_COLLEAGUE"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/QuestionType" }
+                        },
+                        "totalElements": { "type": "number" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Settings"]
+      }
+    },
+    "/swiftSpar/v3/user-pic/check": {
+      "post": {
+        "operationId": "UserPicController_check",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "type": "object" } } }
+            }
+          }
+        },
+        "tags": ["User Pic"]
+      }
+    },
+    "/swiftSpar/v3/tools/converters/excel-to-json": {
+      "post": {
+        "operationId": "ToolsController_check",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/Object" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "201": { "description": "" }
+        },
+        "tags": ["Tools"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/getByParentId": {
+      "get": {
+        "operationId": "ActivityTypeController_getByParentId",
+        "parameters": [
+          { "name": "parentId", "required": true, "in": "query", "schema": { "type": "number" } },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/ActivityType" }
+                        },
+                        "totalElements": { "type": "number" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/getAllByParentId": {
+      "get": {
+        "operationId": "ActivityTypeController_getAllByParentId",
+        "parameters": [
+          { "name": "parentId", "required": true, "in": "query", "schema": { "type": "number" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/ActivityType" }
+                        },
+                        "totalElements": { "type": "number" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/getListPathById": {
+      "get": {
+        "operationId": "ActivityTypeController_getListPathById",
+        "parameters": [
+          { "name": "id", "required": true, "in": "query", "schema": { "type": "number" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/Number" }
+                        },
+                        "totalElements": { "type": "number" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/get": {
+      "get": {
+        "operationId": "ActivityTypeController_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/ActivityType" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/create": {
+      "post": {
+        "operationId": "ActivityTypeController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateActivityTypeRequestDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/ActivityType" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "201": { "description": "" }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/update": {
+      "put": {
+        "operationId": "ActivityTypeController_update",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateActivityTypeDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/ActivityType" } } }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/delete": {
+      "delete": {
+        "operationId": "ActivityTypeController_delete",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DeleteActivityTypeDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/Boolean" } } }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/importFromExcel": {
+      "post": {
+        "operationId": "ActivityTypeController_importActivityTypeFromExcel",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": { "file": { "type": "string", "format": "binary" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/Boolean" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "201": { "description": "" }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/activity-type/updateOrder": {
+      "put": {
+        "operationId": "ActivityTypeController_updateOrder",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateActivityTypeOrderDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/Boolean" } } }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Activity Type"]
+      }
+    },
+    "/swiftSpar/v3/category-type/create": {
+      "post": {
+        "operationId": "CategoryTypeController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateCategotyTypeRequestDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    { "properties": { "content": { "$ref": "#/components/schemas/CategoryType" } } }
+                  ]
+                }
+              }
+            }
+          },
+          "201": { "description": "" }
+        },
+        "tags": ["Category Type"]
+      }
+    },
+    "/swiftSpar/v3/category-type/get": {
+      "get": {
+        "operationId": "CategoryTypeController_get",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 10, "type": "number", "minimum": 1 }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": { "default": 0, "type": "number", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": { "$ref": "#/components/schemas/CategoryType" }
+                        },
+                        "numberOfElements": { "type": "number" },
+                        "totalElements": { "type": "number" },
+                        "limit": { "type": "number" },
+                        "offset": { "type": "number" },
+                        "isLast": { "type": "boolean" }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Category Type"]
+      }
+    },
+    "/swiftSpar/v3/category-type/update": {
+      "put": {
+        "operationId": "CategoryTypeController_update",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateCategotyTypeRequestDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "string" } } }
+          }
+        },
+        "tags": ["Category Type"]
+      }
+    },
+    "/swiftSpar/v3/category-type/delete": {
+      "delete": {
+        "operationId": "CategoryTypeController_delete",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DeleteCategotyTypeRequestDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": { "application/json": { "schema": { "type": "boolean" } } }
+          }
+        },
+        "tags": ["Category Type"]
+      }
+    }
+  },
+  "info": {
+    "title": "Wiz app",
+    "description": "The Wiz app API description",
+    "version": "3.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "ss_token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "[just text field] Please enter token in following format: <JWT>",
+        "type": "apiKey",
+        "in": "header",
+        "name": "ss_token"
+      }
+    },
+    "schemas": {
+      "CreateSubscriptionReqDto": {
+        "type": "object",
+        "properties": {
+          "applicationId": { "type": "string" },
+          "paymentSystem": {
+            "type": "string",
+            "enum": ["IOS_IN_APP_PURCHASES", "ANDROID_IN_APP_PURCHASES"]
+          },
+          "productId": { "type": "string" },
+          "receipt": { "type": "string" }
+        },
+        "required": ["applicationId", "paymentSystem", "productId", "receipt"]
+      },
+      "SubscriptionDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "applicationId": { "type": "string" },
+          "paymentSystem": {
+            "type": "string",
+            "enum": ["IOS_IN_APP_PURCHASES", "ANDROID_IN_APP_PURCHASES"]
+          },
+          "productId": { "type": "string" },
+          "receipt": { "type": "string" },
+          "endedDate": { "type": "string" },
+          "isValid": { "type": "boolean" }
+        },
+        "required": [
+          "id",
+          "applicationId",
+          "paymentSystem",
+          "productId",
+          "receipt",
+          "endedDate",
+          "isValid"
+        ]
+      },
+      "IsValidSubscriptionReqDto": {
+        "type": "object",
+        "properties": { "productId": { "type": "string" } },
+        "required": ["productId"]
+      },
+      "ResponsePageData": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "array", "items": { "type": "string" } },
+          "numberOfElements": { "type": "number" },
+          "totalElements": { "type": "number" },
+          "limit": { "type": "number" },
+          "offset": { "type": "number" },
+          "isLast": { "type": "boolean" },
+          "metadata": { "type": "object" }
+        },
+        "required": [
+          "content",
+          "numberOfElements",
+          "totalElements",
+          "limit",
+          "offset",
+          "isLast",
+          "metadata"
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "userId": { "type": "number" },
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "userPic": { "type": "string" },
+          "dob": { "type": "string" },
+          "ageVisibility": { "type": "boolean" },
+          "age": { "type": "number" },
+          "userNetworks": { "type": "string" },
+          "gender": { "type": "string" },
+          "subscriptionPremium": { "type": "number" },
+          "friendStatus": {
+            "type": "string",
+            "enum": ["NOT_REQUESTED", "PENDING", "ACCEPT", "REJECT"]
+          }
+        },
+        "required": [
+          "userId",
+          "firstName",
+          "lastName",
+          "userPic",
+          "dob",
+          "ageVisibility",
+          "age",
+          "userNetworks",
+          "gender",
+          "subscriptionPremium"
+        ]
+      },
+      "DeleteUserReqDto": {
+        "type": "object",
+        "properties": { "deleteReason": { "type": "string" } }
+      },
+      "LinkupInterestedDto": {
+        "type": "object",
+        "properties": {
+          "interestedId": { "type": "number" },
+          "userId": { "type": "number" },
+          "friendId": { "type": "number" },
+          "activityId": { "type": "number" }
+        },
+        "required": ["interestedId", "userId", "friendId", "activityId"]
+      },
+      "ResponseData": {
+        "type": "object",
+        "properties": { "content": { "type": "object" } },
+        "required": ["content"]
+      },
+      "Boolean": { "type": "object", "properties": {} },
+      "CreateBoostActionDto": {
+        "type": "object",
+        "properties": {
+          "profileId": { "type": "number" },
+          "activityId": { "type": "number" },
+          "communityId": { "type": "number" },
+          "type": { "type": "string", "enum": ["PROFILE", "COMMUNITY", "ACTIVITY"] },
+          "subscription": { "$ref": "#/components/schemas/CreateSubscriptionReqDto" }
+        },
+        "required": ["profileId", "activityId", "communityId", "type", "subscription"]
+      },
+      "BoostActionDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "userId": { "type": "number" },
+          "profileId": { "type": "number" },
+          "activityId": { "type": "number" },
+          "communityId": { "type": "number" },
+          "subscription": { "type": "number" },
+          "type": { "enum": ["PROFILE", "COMMUNITY", "ACTIVITY"], "type": "string" },
+          "status": { "enum": ["ONGOING", "COMPLETED"], "type": "string" },
+          "showBoostAgain": { "type": "boolean" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" }
+        },
+        "required": ["id", "userId", "subscription", "type", "status", "startDate", "endDate"]
+      },
+      "UpdateBoostActionDto": {
+        "type": "object",
+        "properties": {
+          "profileId": { "type": "number" },
+          "activityId": { "type": "number" },
+          "communityId": { "type": "number" }
+        }
+      },
+      "TrackingClickRequestDto": {
+        "type": "object",
+        "properties": { "id": { "type": "number" } },
+        "required": ["id"]
+      },
+      "BoostActionReportResponseDto": {
+        "type": "object",
+        "properties": {
+          "totalView": { "type": "number" },
+          "totalClick": { "type": "number" },
+          "totalAchieveGoal": { "type": "number" },
+          "profileId": { "type": "number" },
+          "activityId": { "type": "number" },
+          "communityId": { "type": "number" }
+        },
+        "required": ["totalView", "totalClick", "totalAchieveGoal"]
+      },
+      "ResponseListData": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "array", "items": { "type": "string" } },
+          "totalElements": { "type": "number" }
+        },
+        "required": ["content", "totalElements"]
+      },
+      "QuestionType": { "type": "object", "properties": {} },
+      "Object": { "type": "object", "properties": {} },
+      "ActivityType": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "activityTypeName": { "type": "string" },
+          "activityTypeImage": { "type": "string" },
+          "activityTypeId": { "type": "number" },
+          "paginationId": { "type": "number" },
+          "level": { "type": "number" },
+          "parentId": { "type": "number" },
+          "path": { "type": "string" },
+          "bannerImage": { "type": "string" }
+        },
+        "required": [
+          "id",
+          "activityTypeName",
+          "activityTypeImage",
+          "activityTypeId",
+          "paginationId",
+          "level",
+          "parentId",
+          "path",
+          "bannerImage"
+        ]
+      },
+      "Number": { "type": "object", "properties": {} },
+      "CreateActivityTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "activityTypeName": { "type": "string" },
+          "activityTypeImage": { "type": "string" },
+          "paginationId": { "type": "number" },
+          "parentId": { "type": "number" },
+          "bannerImage": { "type": "string" }
+        },
+        "required": ["activityTypeName"]
+      },
+      "UpdateActivityTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "activityTypeName": { "type": "string" },
+          "activityTypeImage": { "type": "string" },
+          "paginationId": { "type": "number" },
+          "bannerImage": { "type": "string" }
+        },
+        "required": ["id", "activityTypeName"]
+      },
+      "DeleteActivityTypeDto": {
+        "type": "object",
+        "properties": { "id": { "type": "number" } },
+        "required": ["id"]
+      },
+      "UpdateActivityTypeOrderDto": {
+        "type": "object",
+        "properties": { "ids": { "type": "array", "items": { "type": "number" } } },
+        "required": ["ids"]
+      },
+      "CategoryType": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "level": { "type": "number" },
+          "parentId": { "type": "number" },
+          "path": { "type": "string" },
+          "type": { "type": "string" },
+          "parent": { "$ref": "#/components/schemas/CategoryType" },
+          "children": {
+            "default": [],
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CategoryType" }
+          }
+        },
+        "required": ["id", "name", "level", "parentId", "path", "type", "children"]
+      },
+      "CreateCategotyTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "parentId": { "type": "number" },
+          "type": { "type": "string", "enum": ["CONTACT"] }
+        },
+        "required": ["name", "type"]
+      },
+      "UpdateCategotyTypeRequestDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["CONTACT"] }
+        },
+        "required": ["id", "name"]
+      },
+      "DeleteCategotyTypeRequestDto": {
+        "type": "object",
+        "properties": { "id": { "type": "number" } },
+        "required": ["id"]
+      }
+    }
+  },
+  "security": [{ "ss_token": [] }]
+}

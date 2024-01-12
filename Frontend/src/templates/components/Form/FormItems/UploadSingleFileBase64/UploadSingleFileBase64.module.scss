@@ -1,0 +1,29 @@
+@import '@/templates/styles/_variables.scss';
+
+.uploadSingleFile {
+  border-radius: $border-radius-input;
+  line-height: 18.2px;
+  :global(.ant-upload-select-text) {
+    width: 100%;
+    .fileName {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      cursor: 'pointer';
+      border: 1px solid #d9d9d9 !important;
+      border-radius: 6px;
+      padding: 5px 11px;
+      height: 36px;
+      line-height: 26px;
+    }
+  }
+  .selectFileButton {
+    min-width: 107px;
+    text-align: left;
+    span {
+      color: #c2c2c2;
+      line-height: 26px;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import '@/templates/styles/_variables.scss';
+
+.datePicker {
+  width: 100%;
+}
+
+.datePickerDropdown {
+  :global(.ant-picker-today-btn) {
+  }
+  :global(.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before) {
+    border-radius: 6px;
+  }
+  :global(.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner) {
+    color: #fff;
+  }
+
+  :global(.ant-picker-cell) {
+    :global(.ant-picker-cell-inner) {
+      border-radius: $border-radius-input;
+    }
+  }
+  :global(.ant-picker-time-panel-column) {
+    :global(.ant-picker-time-panel-cell-selected) {
+      :global(.ant-picker-time-panel-cell-inner) {
+        background-color: #e6faff;
+      }
+    }
+  }
+}

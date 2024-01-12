@@ -1,0 +1,34 @@
+@import '@/templates/styles/_variables.scss';
+
+.form {
+  border-radius: $border-radius-input;
+  padding: 8px 11px;
+  line-height: 18px;
+  :global(.ant-form-item) {
+    margin: 0 0 0 !important;
+  }
+  @media screen and (max-width: 786px) {
+    :global(.ant-modal-body) {
+      padding: 0 !important;
+    }
+  }
+}
+
+.formItem {
+  border-radius: $border-radius-input;
+  padding: 8px 11px;
+  line-height: 18px;
+  :global(.ant-form-item-label > label) {
+    white-space: normal !important;
+    margin-right: 8px;
+    &:after {
+      content: '' !important;
+    }
+  }
+}
+
+.fixValidationIcon {
+  :global(.ant-form-item-children-icon) {
+    top: 20px !important;
+  }
+}
